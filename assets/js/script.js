@@ -339,7 +339,24 @@
             $stickyClass.removeClass($toggleClass);
         }
     }
+$(document).ready(function(){
+    $('a[href*="#"]:not(.back-to-top)').on('click', function(e){
+        e.preventDefault();
+        var target = this.hash;
+        var $target = $(target);
+        $('html, body').stop().animate({
+            'scrollTop': $target.offset().top
+        }, 1000, 'swing', function(){
+            window.location.hash = target;
+        });
+    });
 
+    // Back to top scroll working normally
+    $('.back-to-top').on('click', function(e){
+        e.preventDefault();
+        $('html, body').animate({ scrollTop: 0 }, 1000);
+    });
+});
 
     /*------------------------------------------
         = Header shopping cart toggle
